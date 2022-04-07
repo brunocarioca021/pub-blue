@@ -7,11 +7,11 @@ import { CardContainer } from '../../components/CardContainer';
 import { useState, useEffect } from 'react';
 
 export const Main = () => {
-  const [games, setGames] = useState([]);
+  const [pub, setPub] = useState([]);
 
   const getData = async () => {
-    await axios.get('/game').then((response) => {
-      setGames(response.data);
+    await axios.get('/').then((response) => {
+      setPub(response.data);
     });
   };
 
@@ -24,7 +24,7 @@ export const Main = () => {
       <Slider data={info} />
       <Container>
         <CardContainer>
-          {games.map((item) => (
+          {pub.map((item) => (
             <a href="!#" key={item.id}>
               <CardS>
                 <CardS.Img variant="top" src={item.imageUrl} />
