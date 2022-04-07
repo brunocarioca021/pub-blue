@@ -2,15 +2,12 @@ import { ContainerS } from '../../components/ContainerForm';
 import { PageTitle } from '../../components/PageTitle';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import { useState } from 'react';
-import moment from "moment";
 import axios from 'axios';
 
 export const Register = () => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const now = moment(new Date()).format("yyyy-MM-dd");
-  const [birthdate, setBirthdate] = useState(now);
   const [imageUrl, setImageUrl] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -23,14 +20,12 @@ export const Register = () => {
       email,
       firstName,
       lastName,
-      birthdate: birthdate + 'T00:00:00.000Z',
       imageUrl,
       password,
       passwordConfirmation
     };
 
     console.log(inputUser);
-    console.log(birthdate + 'T00:00:00.000Z');
 
     axios
       .post('/user', inputUser)
@@ -75,14 +70,6 @@ export const Register = () => {
           </Form.Group>
         </Row>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Data de Nascimento</Form.Label>
-          <Form.Control
-            type="date"
-            onChange={(event) => setBirthdate(event.target.value)}
-          />
-        </Form.Group>
-
         <Form.Group as={Col}>
           <Form.Label>Link da Imagem do perfil</Form.Label>
           <Form.Control
@@ -91,7 +78,6 @@ export const Register = () => {
             onChange={(event) => setImageUrl(event.target.value)}
           />
         </Form.Group>
-
 
         <Row>
           <Form.Group as={Col}>
